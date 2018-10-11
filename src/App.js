@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { NavLink, Route } from 'react-router-dom';
+import { Container } from 'semantic-ui-react';
+import TicketListPage from './pages/ticket-list-page';
+import TicketFormPage from './pages/ticket-form-page';
+
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Container>
+        <div className="ui two item menu">
+          <NavLink className="item" activeClassName="active" exact to="/">
+            Ticket list
+          </NavLink>
+          <NavLink className="item" activeClassName="active" exact to="/tickets/new">
+            Add ticket
+          </NavLink>
+        </div>
+
+        <Route exact path="/" component={TicketListPage} />
+        <Route exact path="/tickets/new" component={TicketFormPage} />
+        <Route exact path="/tickets/edit/:_id" component={TicketFormPage} />
+      </Container>
     );
   }
 }
