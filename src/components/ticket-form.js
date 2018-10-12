@@ -21,6 +21,11 @@ class TicketForm extends Component{
         </Form.Field>
     )
 
+    componentWillReceiveProps = (nextProps) => {
+        const { ticket } = nextProps;
+        if(ticket._id !== this.props.ticket._id) this.props.initialize(ticket)
+    }
+
 
     render(){
         const { handleSubmit, pristine, submitting, loading } = this.props;
@@ -28,7 +33,11 @@ class TicketForm extends Component{
         return (
             <Grid centered columns={2}>
                 <Grid.Column>
-                    <h1 style={{marginTop:"1em"}}> Nuevo Ticket </h1>
+                    <h1 style={{marginTop:"1em"}}> 
+                        {/* {this.props.array._id} */}
+                        {this.props.ticket._id ? 'Editar Ticket' : 'Nuevo Ticket'}
+                        Editar
+                    </h1>
                     <Form onSubmit={handleSubmit} loading={loading}>
                         <Field name="propietario" type="text" component={this.renderField} label="Propietario"/>
                         <Field name="tipo" type="text" component={this.renderField} label="Tipo"/>

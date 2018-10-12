@@ -25,8 +25,26 @@ export function newTicket(){
 export function saveTicket(ticket){
     return dispatch => {
         return dispatch({
-            type: 'SAVE_CONTACT',
+            type: 'SAVE_TICKET',
             payload: client.post(url, ticket)
+        })
+    }
+}
+
+export function fetchTicket(_id){
+    return dispatch => {
+        return dispatch({
+            type: 'FETCH_TICKET',
+            payload: client.get(`${url}/${_id}`)
+        })
+    }
+}
+
+export function updateTicket(ticket){
+    return dispatch => {
+        return dispatch({
+            type: 'UPDATE_TICKET',
+            payload: client.put(`${url}/${ticket._id}`, ticket)
         })
     }
 }
