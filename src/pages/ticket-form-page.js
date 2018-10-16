@@ -20,6 +20,7 @@ class TicketFormPage extends Component {
     }
 
     submit = (ticket) => {
+        console.log(ticket);
         if(!ticket._id){
             return this.props.saveTicket(ticket)
             .then(response => this.setState({ redirect:true }))
